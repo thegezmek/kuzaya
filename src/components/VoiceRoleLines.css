@@ -1,0 +1,62 @@
+.voice-role-lines__title {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--text-label);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.92;
+}
+
+.voice-role-lines__org {
+  margin: 0.3rem 0 0;
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--earth);
+}
+
+.voice-role-lines--card {
+  margin: 0.15rem 0 0.4rem;
+}
+
+.voice-role-lines--popup {
+  margin: 0.45rem 0 0;
+}
+
+.voice-role-lines--popup .voice-role-lines__title {
+  color: var(--voice-marker);
+}
+
+.voice-role-lines--hover {
+  margin: 0 0 0.5rem;
+}
+
+.voice-role-lines--hover .voice-role-lines__title {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+}
+
+.voice-role-lines--hover .voice-role-lines__org {
+  font-size: 0.58rem;
+}
+
+.voice-role-lines--location {
+  margin: 0.2rem 0 0;
+}
+
+.voice-role-lines--location .voice-role-lines__title {
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  color: var(--voice-marker);
+}
+
+.voice-role-lines--location .voice-role-lines__org {
+  font-size: 0.64rem;
+  margin-top: 0.2rem;
+}

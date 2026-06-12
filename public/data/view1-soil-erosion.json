@@ -1,0 +1,9 @@
+{
+  "id": "view1.soil_erosion_ratio",
+  "value": "100×",
+  "statement": "On farmland, soil is being lost up to 100 times faster than nature can rebuild it.",
+  "scope": "Global; 100× applies to tropical/subtropical hilly croplands (incl. E. African highlands)",
+  "source": "FAO, Global Symposium on Soil Erosion (2019); Status of the World's Soil Resources (2015)",
+  "url": "https://www.fao.org/about/meetings/soil-erosion-symposium/key-messages/en/",
+  "retrieved": "2026-06-10"
+}

@@ -1,0 +1,55 @@
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(10, 12, 11, 0.55);
+}
+
+.sheet {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(520px, 100vw);
+  height: 100%;
+  background: var(--surface);
+  border-left: 1px solid rgba(232, 93, 58, 0.2);
+  box-shadow: -16px 0 64px rgba(0, 0, 0, 0.45);
+  overflow-y: auto;
+}
+
+.sheet__close {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  text-align: right;
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(var(--surface) 70%, transparent);
+  opacity: 0.55;
+  font-size: 0.78rem !important;
+}
+
+.sheet__close:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.sheet__content {
+  padding: 0 2.25rem 3.5rem;
+}
+
+.sheet__title {
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.sheet__footer {
+  margin-top: 3rem;
+  opacity: 0.4;
+  line-height: 1.65;
+}

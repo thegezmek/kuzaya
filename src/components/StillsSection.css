@@ -1,0 +1,22 @@
+.stills-section {
+  --section-pad: 2.5rem;
+  padding: 0 var(--section-pad) 4.5rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--contour-faint);
+}
+
+.stills-section__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .stills-section {
+    --section-pad: 1.5rem;
+    padding-bottom: 3.5rem;
+  }
+}

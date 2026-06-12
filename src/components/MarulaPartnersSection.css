@@ -1,0 +1,63 @@
+.film-section__team-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3rem 4rem;
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--contour-faint);
+  align-items: start;
+}
+
+.film-section__marula {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.film-section__marula-partners-title {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.film-section__production .film-section__production-title {
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  text-transform: uppercase;
+}
+
+.film-section__marula-badge {
+  align-self: flex-start;
+  margin: 0 0 1.25rem;
+}
+
+.film-section__marula-badge img {
+  display: block;
+  width: clamp(5rem, 10vw, 6.5rem);
+  height: auto;
+}
+
+.film-section__marula-partners-sub {
+  margin: 0 0 1.25rem;
+  opacity: 0.55;
+}
+
+.film-section__marula-partners-body {
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-muted);
+  max-width: 36rem;
+}
+
+@media (max-width: 900px) {
+  .film-section__team-row {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}

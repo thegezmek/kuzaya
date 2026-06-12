@@ -1,0 +1,31 @@
+.hover-preview {
+  position: fixed;
+  z-index: var(--z-hover);
+  width: 160px;
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - 2.75rem));
+  margin: 0;
+}
+
+.hover-preview img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid rgba(232, 93, 58, 0.45);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.65);
+}
+
+.hover-preview figcaption {
+  display: block;
+  margin-top: 0.45rem;
+  text-align: left;
+  color: var(--accent);
+}
+
+.hover-preview__region {
+  display: block;
+  margin-top: 0.25rem;
+  text-align: left;
+  opacity: 0.65;
+}

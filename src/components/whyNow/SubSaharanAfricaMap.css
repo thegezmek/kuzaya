@@ -1,0 +1,97 @@
+.ssa-map {
+  margin: 0;
+  width: 100%;
+  --fill-ratio: 0.775;
+}
+
+.ssa-map__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 10rem;
+  max-height: 22rem;
+  overflow: visible;
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+.ssa-map--animate .ssa-map__svg {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 0.7s var(--ease-dawn),
+    transform 0.7s var(--ease-dawn);
+}
+
+.ssa-map__base {
+  fill: rgba(90, 107, 82, 0.22);
+  opacity: 0;
+}
+
+.ssa-map--animate .ssa-map__base {
+  opacity: 1;
+  transition: opacity 0.6s var(--ease-dawn) 0.2s;
+}
+
+.ssa-map__degraded-wrap {
+  transform: scaleY(0);
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.ssa-map--animate .ssa-map__degraded-wrap {
+  transform: scaleY(var(--fill-ratio));
+  transition: transform 2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
+}
+
+.ssa-map__fill-edge {
+  stroke: rgba(255, 214, 196, 0.85);
+  stroke-width: 1.25;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+}
+
+.ssa-map--animate .ssa-map__fill-edge {
+  opacity: 1;
+  transition: opacity 0.5s var(--ease-dawn) 0.55s;
+}
+
+.ssa-map__outline {
+  opacity: 0;
+}
+
+.ssa-map--animate .ssa-map__outline {
+  opacity: 1;
+  transition: opacity 0.85s var(--ease-dawn) 0.15s;
+}
+
+.ssa-map__outline path {
+  fill: none;
+  stroke: rgba(232, 228, 220, 0.38);
+  stroke-width: 0.65;
+  vector-effect: non-scaling-stroke;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ssa-map__svg {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .ssa-map__base,
+  .ssa-map__outline {
+    opacity: 1;
+    transition: none;
+  }
+
+  .ssa-map__degraded-wrap {
+    transform: scaleY(var(--fill-ratio));
+    transition: none;
+  }
+
+  .ssa-map__fill-edge {
+    opacity: 1;
+    transition: none;
+  }
+}

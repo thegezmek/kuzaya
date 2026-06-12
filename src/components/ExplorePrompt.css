@@ -1,0 +1,56 @@
+.explore-prompt {
+  position: absolute;
+  bottom: 5.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-instruments);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: -88px;
+  margin-bottom: -88px;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.8s var(--ease-dawn);
+  color: inherit;
+}
+
+.explore-prompt--visible {
+  opacity: 0.65;
+  pointer-events: auto;
+}
+
+.explore-prompt--visible:hover {
+  opacity: 1;
+}
+
+.explore-prompt--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.explore-prompt__line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(var(--accent), transparent);
+  animation: explore-pulse 2s ease-in-out infinite;
+}
+
+.explore-prompt:hover .field-label {
+  color: var(--accent);
+}
+
+@keyframes explore-pulse {
+  0%,
+  100% {
+    transform: scaleY(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scaleY(0.7);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,58 @@
+.compass {
+  position: absolute;
+  bottom: 3.5rem;
+  right: 1.5rem;
+  z-index: var(--z-instruments);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  color: var(--earth);
+  pointer-events: none;
+}
+
+.compass__rose {
+  width: 88px;
+  height: 88px;
+}
+
+.compass__cardinal {
+  font-family: var(--font-ui);
+  font-size: 7px;
+  font-weight: 700;
+  fill: currentColor;
+}
+
+.compass__bearing {
+  margin: 0.5rem 0 0;
+  color: var(--accent);
+  font-family: var(--font-map-numeral);
+  font-size: 0.95rem !important;
+  letter-spacing: 0.06em;
+}
+
+.compass__region {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.compass__hint {
+  margin: 0.25rem 0 0;
+  opacity: 0.5;
+  font-size: 0.65rem !important;
+}
+
+@media (max-width: 768px) {
+  .compass {
+    bottom: 3.25rem;
+    right: 1rem;
+  }
+
+  .compass__rose {
+    width: 64px;
+    height: 64px;
+  }
+}

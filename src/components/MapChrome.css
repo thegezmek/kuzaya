@@ -1,0 +1,215 @@
+.chrome {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease-dawn);
+}
+
+.chrome--hidden {
+  opacity: 0;
+  pointer-events: none !important;
+}
+
+.chrome--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.chrome > * {
+  pointer-events: auto;
+}
+
+.chrome__where-lead {
+  position: absolute;
+  top: var(--map-nav-offset);
+  left: 2.5rem;
+  max-width: min(480px, calc(100vw - 2rem));
+  margin: 0;
+  text-align: left;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  opacity: 0.9;
+}
+
+.chrome__controls {
+  position: absolute;
+  top: var(--map-nav-offset);
+  right: 1.5rem;
+  left: auto;
+  z-index: 12;
+  margin: 0;
+  pointer-events: auto;
+}
+
+.chrome__where-details {
+  position: absolute;
+  top: calc(var(--map-nav-offset) + 2.35rem);
+  left: 2.5rem;
+  max-width: min(480px, calc(100vw - 2rem));
+  text-align: left;
+}
+
+.chrome__instruction {
+  margin: 0;
+  opacity: 0.45;
+}
+
+.chrome__coords {
+  margin: 0.35rem 0 0;
+  color: var(--accent);
+  opacity: 0.65;
+  font-family: var(--font-map-numeral);
+  font-size: 0.82rem !important;
+  letter-spacing: 0.06em;
+}
+
+.chrome__corridor {
+  position: absolute;
+  left: 2.5rem;
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: min(480px, calc(100vw - 2rem));
+  pointer-events: auto;
+}
+
+.chrome__country {
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  transition: color 0.4s, opacity 0.4s;
+  flex-shrink: 0;
+}
+
+.chrome__country--active {
+  color: var(--accent);
+  opacity: 1;
+}
+
+.chrome__track {
+  position: relative;
+  flex: 1;
+  height: 10px;
+  background: rgba(232, 93, 58, 0.12);
+  cursor: ew-resize;
+  touch-action: none;
+  border-radius: 1px;
+}
+
+.chrome__track-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: rgba(232, 93, 58, 0.35);
+  pointer-events: none;
+  border-radius: 1px;
+  transition: width 0.15s ease-out;
+}
+
+.chrome__journey-tick {
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: rgba(232, 93, 58, 0.25);
+  border: 1px solid rgba(232, 93, 58, 0.4);
+  pointer-events: none;
+  transition:
+    background 0.25s,
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+
+.chrome__journey-tick--reached {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(232, 93, 58, 0.65);
+  transform: scale(1.2);
+}
+
+.chrome__thumb {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  background: var(--accent);
+  border-radius: 1px;
+  transform: rotate(45deg);
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(232, 93, 58, 0.55);
+  z-index: 2;
+  transition: left 0.15s ease-out;
+}
+
+.chrome__scroll-lng {
+  color: var(--accent);
+  opacity: 0.75;
+  flex-shrink: 0;
+  min-width: 3.5rem;
+  font-family: var(--font-map-numeral);
+  font-size: 0.8rem !important;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 768px) {
+  .chrome {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--map-nav-offset) 1rem 0;
+  }
+
+  .chrome__where-lead,
+  .chrome__controls,
+  .chrome__where-details {
+    position: static;
+    left: auto;
+    right: auto;
+    max-width: none;
+  }
+
+  .chrome__controls {
+    margin-top: 0.55rem;
+  }
+
+  .chrome__where-details {
+    margin-top: 0.65rem;
+  }
+
+  .chrome__corridor {
+    position: absolute;
+    left: 1rem;
+    bottom: max(1.5rem, env(safe-area-inset-bottom));
+    width: min(440px, calc(100vw - 2rem));
+    flex-wrap: nowrap;
+  }
+}
+
+.map-section:fullscreen .chrome__where-lead,
+.map-section:fullscreen .chrome__where-details {
+  top: 1.25rem;
+}
+
+.map-section:fullscreen .chrome__where-details {
+  top: calc(1.25rem + 2.35rem);
+}
+
+.map-section:fullscreen .chrome__controls {
+  top: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .map-section:fullscreen .chrome {
+    padding-top: 1.25rem;
+  }
+}

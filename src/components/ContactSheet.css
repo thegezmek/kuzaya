@@ -1,0 +1,21 @@
+.contact__intro {
+  margin: 1.25rem 0 2.25rem;
+  font-size: 1.15rem;
+  color: var(--ink-muted);
+}
+
+.contact__card h3 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+}
+
+.contact__card p {
+  margin: 0.4rem 0;
+  font-size: 1.05rem;
+}
+
+.sheet--contact .sheet__title {
+  font-size: 2.25rem;
+}

@@ -1,0 +1,413 @@
+.fertilizer-view {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.fertilizer-view__view-label {
+  margin: 0 0 0.75rem;
+  color: var(--accent);
+  opacity: 0.75;
+}
+
+.why-now__beats .fertilizer-view__headline {
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+}
+
+.fertilizer-view__title {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.why-now__beats .fertilizer-view__title {
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+}
+
+.fertilizer-view__headline {
+  margin: 0 0 1rem;
+  max-width: 36rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: rgba(232, 228, 220, 0.9);
+}
+
+.why-now__beats .fertilizer-view__chart-wrap {
+  min-height: 240px;
+}
+
+.why-now__beats-row .fertilizer-view__headline {
+  max-width: none;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+}
+
+.fertilizer-view__headline--sub {
+  margin-bottom: 0.75rem;
+  font-size: clamp(0.9rem, 1.45vw, 1.05rem);
+  font-weight: 600;
+  line-height: 1.4;
+  color: rgba(232, 228, 220, 0.82);
+}
+
+.why-now__beats-row .fertilizer-view__headline--sub {
+  font-size: clamp(0.85rem, 1.35vw, 0.98rem);
+}
+
+.fertilizer-view--beats .fertilizer-view__chart-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  margin-bottom: 0.65rem;
+}
+
+.fertilizer-view--beats .fertilizer-view__chart-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.fertilizer-view--beats .fertilizer-view__chart-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.fertilizer-view--beats .fertilizer-view__chart-canvas {
+  height: 12.25rem;
+  min-height: 12.25rem;
+  max-height: 12.25rem;
+  width: 100%;
+  position: relative;
+}
+
+.why-now__beats-row .fertilizer-view__chart-block + .fertilizer-view__chart-block {
+  padding-top: clamp(1rem, 2vh, 1.65rem);
+}
+
+.why-now__beats-row .fertilizer-view__source {
+  flex-shrink: 0;
+}
+
+.fertilizer-view__chart-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 1.25rem;
+}
+
+.fertilizer-view__chart-block {
+  min-width: 0;
+}
+
+.fertilizer-view__chart-block + .fertilizer-view__chart-block {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(232, 93, 58, 0.14);
+}
+
+.fertilizer-view__chart-note {
+  margin: 0.65rem 0 0;
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: rgba(138, 154, 122, 0.75);
+}
+
+.fertilizer-view__chart-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  margin: 0;
+}
+
+.fertilizer-view__chart-unit {
+  margin: 0 0 0.75rem;
+  opacity: 0.45;
+}
+
+.fertilizer-chart {
+  display: block;
+  overflow: visible;
+  cursor: crosshair;
+}
+
+.fertilizer-chart__line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+  transition:
+    stroke-width 0.25s var(--ease-dawn),
+    opacity 0.25s var(--ease-dawn),
+    filter 0.25s var(--ease-dawn);
+}
+
+.fertilizer-chart__hit {
+  fill: none;
+  stroke: transparent;
+  pointer-events: stroke;
+  cursor: pointer;
+}
+
+.fertilizer-chart__series.is-active .fertilizer-chart__line {
+  stroke-width: 2.75;
+  filter: drop-shadow(0 0 6px rgba(232, 228, 220, 0.18));
+}
+
+.fertilizer-chart__series--kenya.is-active .fertilizer-chart__line {
+  opacity: 1;
+}
+
+.fertilizer-chart__series--rwanda.is-active .fertilizer-chart__line {
+  opacity: 1;
+}
+
+.fertilizer-chart__series.is-dimmed .fertilizer-chart__line {
+  opacity: 0.22;
+}
+
+.fertilizer-chart__cursor {
+  stroke: rgba(232, 228, 220, 0.14);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+  pointer-events: none;
+}
+
+.fertilizer-chart__dot {
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    r 0.2s var(--ease-dawn),
+    opacity 0.2s var(--ease-dawn);
+}
+
+.fertilizer-chart--hover .fertilizer-chart__series.is-active .fertilizer-chart__dot {
+  opacity: 1;
+  r: 3;
+}
+
+.fertilizer-chart__dot--kenya {
+  fill: var(--earth);
+  stroke: rgba(10, 12, 11, 0.9);
+  stroke-width: 1.5;
+}
+
+.fertilizer-chart__dot--rwanda {
+  fill: var(--accent);
+  stroke: rgba(10, 12, 11, 0.9);
+  stroke-width: 1.5;
+}
+
+.fertilizer-chart__dot--ethiopia {
+  fill: #7a9aab;
+  stroke: rgba(10, 12, 11, 0.9);
+  stroke-width: 1.5;
+}
+
+.fertilizer-chart__dot--tanzania {
+  fill: #6a7560;
+  stroke: rgba(10, 12, 11, 0.9);
+  stroke-width: 1.5;
+}
+
+.fertilizer-chart__dot--uganda {
+  fill: #5a7c9b;
+  stroke: rgba(10, 12, 11, 0.9);
+  stroke-width: 1.5;
+}
+
+.fertilizer-chart__tooltip {
+  pointer-events: none;
+}
+
+.fertilizer-chart__tooltip-box {
+  fill: rgba(10, 12, 11, 0.92);
+  stroke: rgba(232, 228, 220, 0.12);
+  stroke-width: 1;
+}
+
+.fertilizer-chart__tooltip--kenya .fertilizer-chart__tooltip-box {
+  stroke: rgba(90, 107, 82, 0.45);
+}
+
+.fertilizer-chart__tooltip--rwanda .fertilizer-chart__tooltip-box {
+  stroke: rgba(232, 93, 58, 0.45);
+}
+
+.fertilizer-chart__tooltip-year {
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  fill: var(--ink-muted);
+  letter-spacing: 0.08em;
+}
+
+.fertilizer-chart__tooltip-value {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  fill: var(--ink);
+}
+
+.fertilizer-chart__tooltip--kenya .fertilizer-chart__tooltip-value {
+  fill: var(--earth);
+}
+
+.fertilizer-chart__tooltip--rwanda .fertilizer-chart__tooltip-value {
+  fill: var(--accent);
+}
+
+.fertilizer-chart__label,
+.fertilizer-chart__axis-year {
+  opacity: 0;
+}
+
+.fertilizer-chart--animate .fertilizer-chart__label--kenya {
+  opacity: 1;
+  transition: opacity 0.5s var(--ease-dawn) 2.1s;
+}
+
+.fertilizer-chart--animate .fertilizer-chart__label--rwanda {
+  opacity: 1;
+  transition: opacity 0.5s var(--ease-dawn) 2.35s;
+}
+
+.fertilizer-chart--animate .fertilizer-chart__label--ethiopia {
+  opacity: 1;
+  transition: opacity 0.5s var(--ease-dawn) 2.5s;
+}
+
+.fertilizer-chart--animate .fertilizer-chart__label--tanzania {
+  opacity: 1;
+  transition: opacity 0.5s var(--ease-dawn) 2.65s;
+}
+
+.fertilizer-chart--animate .fertilizer-chart__label--uganda {
+  opacity: 1;
+  transition: opacity 0.5s var(--ease-dawn) 2.8s;
+}
+
+.fertilizer-chart--animate .fertilizer-chart__axis-year {
+  opacity: 1;
+  transition: opacity 0.5s var(--ease-dawn) 1.9s;
+}
+
+.fertilizer-chart__line--rwanda {
+  stroke: var(--accent);
+}
+
+.fertilizer-chart__line--kenya {
+  stroke: var(--earth);
+  opacity: 0.85;
+}
+
+.fertilizer-chart__line--ethiopia {
+  stroke: #7a9aab;
+  opacity: 0.7;
+}
+
+.fertilizer-chart__line--tanzania {
+  stroke: #6a7560;
+  opacity: 0.65;
+}
+
+.fertilizer-chart__line--uganda {
+  stroke: #5a7c9b;
+  opacity: 0.7;
+}
+
+.fertilizer-chart__label.is-active {
+  opacity: 1 !important;
+}
+
+.fertilizer-chart__label.is-dimmed {
+  opacity: 0.3 !important;
+}
+
+.fertilizer-chart__label {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.fertilizer-chart__label--rwanda {
+  fill: var(--accent);
+}
+
+.fertilizer-chart__label--kenya {
+  fill: var(--earth);
+}
+
+.fertilizer-chart__label--ethiopia {
+  fill: #7a9aab;
+}
+
+.fertilizer-chart__label--tanzania {
+  fill: #6a7560;
+}
+
+.fertilizer-chart__label--uganda {
+  fill: #5a7c9b;
+}
+
+.fertilizer-chart__axis-year {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  fill: var(--ink-muted);
+  letter-spacing: 0.08em;
+}
+
+.fertilizer-view__source {
+  margin: 0;
+  opacity: 0.5;
+}
+
+.fertilizer-view__source a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.fertilizer-view__source a:hover {
+  color: var(--accent);
+}
+
+.fertilizer-view__retrieved {
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .why-now__beats-row .fertilizer-view__chart-stack,
+  .why-now__beats-row .fertilizer-view__chart-block,
+  .why-now__beats-row .fertilizer-view__chart-wrap,
+  .why-now__beats-row .fertilizer-view__chart-canvas {
+    flex: none;
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fertilizer-chart {
+    cursor: default;
+  }
+
+  .fertilizer-chart__line {
+    stroke-dashoffset: 0 !important;
+    transition: none !important;
+  }
+
+  .fertilizer-chart__label,
+  .fertilizer-chart__axis-year {
+    opacity: 1;
+    transition: none;
+  }
+}

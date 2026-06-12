@@ -1,0 +1,311 @@
+.app {
+  background: var(--bg);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 300;
+  min-height: var(--site-header-height);
+  padding: 0 clamp(0.35rem, 1vw, 0.65rem);
+  background: var(--bg);
+}
+
+.map-section {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  height: min(100vh, 1360px);
+  min-height: 860px;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--bg);
+}
+
+.map-section--panel-open {
+  z-index: var(--z-map-raised);
+  overflow: visible;
+}
+
+.map-section--panel-open .map-section__stage {
+  overflow: visible;
+}
+
+.map-section--panel-open .map-intro {
+  z-index: 1;
+}
+
+.map-section--panel-open .map-section__instruments {
+  z-index: 10;
+}
+
+.map-section--panel-open .map-section__markers {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.map-section--panel-open .geo-marker-slot,
+.map-section--panel-open .geo-marker-root {
+  z-index: 1 !important;
+}
+
+.map-section:fullscreen {
+  height: 100vh;
+  min-height: 100vh;
+  max-height: none;
+}
+
+.map-section:fullscreen .map-intro {
+  display: none;
+}
+
+.map-section__stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.map-section__viewport {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--bg);
+}
+
+.map-section__viewport-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      var(--bg) 0%,
+      var(--bg) 5%,
+      rgba(10, 12, 11, 0.82) 12%,
+      rgba(10, 12, 11, 0.58) 22%,
+      rgba(10, 12, 11, 0.22) 30%,
+      transparent 38%
+    ),
+    linear-gradient(
+      0deg,
+      var(--bg) 0%,
+      var(--bg) 6%,
+      rgba(10, 12, 11, 0.78) 16%,
+      rgba(10, 12, 11, 0.48) 28%,
+      rgba(10, 12, 11, 0.16) 40%,
+      transparent 46%
+    ),
+    radial-gradient(
+      ellipse 118% 92% at 50% 50%,
+      transparent 58%,
+      rgba(10, 12, 11, 0.07) 80%,
+      rgba(10, 12, 11, 0.22) 100%
+    );
+}
+
+.map-section__markers {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-map-markers);
+  pointer-events: none;
+  overflow: visible;
+}
+
+.map-section__overlays {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-map-overlays);
+  pointer-events: none;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.map-section__overlays .map-panel-scrim {
+  pointer-events: auto;
+}
+
+.map-section__overlays .map-card-anchor--portal {
+  pointer-events: auto;
+  isolation: isolate;
+}
+
+.map-section__markers--instrumented {
+  mix-blend-mode: normal;
+}
+
+.map-section__markers .geo-marker-root,
+.map-section__markers .geo-marker-slot,
+.map-section__markers .geo-marker {
+  pointer-events: auto;
+}
+
+.map-section:fullscreen .map-section__viewport-gradient {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 12, 11, 0.5) 0%,
+      transparent 20%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(10, 12, 11, 0.38) 0%,
+      transparent 16%
+    );
+}
+
+.map-section:fullscreen .map-section__stage {
+  position: absolute;
+  inset: 0;
+  flex: none;
+}
+
+.map-section__inner {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.map-section__atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.map-section__instruments {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-map-instruments);
+  pointer-events: none;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.map-section__veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.7s var(--ease-dawn);
+  background: rgba(10, 12, 11, 0.28);
+}
+
+.map-section__atmosphere--active .map-section__veil {
+  opacity: 1;
+}
+
+.map-section__hud {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.map-section__shade-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(200px, 36%, 300px);
+  pointer-events: none;
+  opacity: 0.42;
+  transition: opacity 0.7s var(--ease-dawn);
+  background: linear-gradient(
+    180deg,
+    var(--bg) 0%,
+    var(--bg) 12%,
+    rgba(10, 12, 11, 0.72) 26%,
+    rgba(10, 12, 11, 0.38) 48%,
+    rgba(10, 12, 11, 0.1) 76%,
+    transparent 100%
+  );
+}
+
+.map-section__atmosphere--active .map-section__shade-top {
+  opacity: 1;
+}
+
+.map-section:fullscreen .map-section__shade-top {
+  height: clamp(160px, 28%, 240px);
+}
+
+.map-section__fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: clamp(140px, 28%, 220px);
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(10, 12, 11, 0.18) 42%,
+    rgba(10, 12, 11, 0.52) 74%,
+    var(--bg) 100%
+  );
+}
+
+.map-section:fullscreen .map-section__fade {
+  display: none;
+}
+
+/* Readable panels for all map instrument labels */
+.map-section__instruments .earthmap-legend,
+.map-section__instruments .map-hint,
+.map-section__instruments .explore-prompt {
+  z-index: var(--z-instruments);
+}
+
+.map-section__instruments .earthmap-legend {
+  padding: 0.65rem 0.8rem;
+  background: rgba(20, 24, 22, 0.92);
+  border: 1px solid rgba(232, 93, 58, 0.35);
+  border-radius: 6px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+}
+
+.map-section__instruments .earthmap-legend__title {
+  color: var(--accent);
+  opacity: 1;
+}
+
+.map-section__instruments .earthmap-legend__item {
+  color: var(--ink);
+}
+
+.map-section__instruments .map-hint {
+  color: var(--ink);
+  background: rgba(20, 24, 22, 0.92);
+  border-color: rgba(232, 93, 58, 0.45);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.map-section__instruments .map-hint--visible {
+  opacity: 0.92;
+}
+
+.map-section__instruments .compass,
+.map-section__instruments .elevation {
+  z-index: var(--z-instruments);
+}
+
+.map-section__instruments .compass__region,
+.map-section__instruments .compass__bearing {
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85);
+}
+
+.map-section__instruments .map-source-credit {
+  z-index: 9999;
+  pointer-events: auto;
+}
+

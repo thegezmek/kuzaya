@@ -1,0 +1,80 @@
+.earthmap-legend {
+  position: absolute;
+  bottom: 6.5rem;
+  left: 1.5rem;
+  z-index: var(--z-instruments);
+  max-width: 210px;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  pointer-events: none;
+  color: var(--ink);
+}
+
+.earthmap-legend__title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.earthmap-legend__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.earthmap-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(232, 228, 220, 0.72);
+}
+
+.earthmap-legend__swatch {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+}
+
+.earthmap-legend__list--markers .earthmap-legend__item {
+  font-size: 0.78rem;
+  color: rgba(232, 228, 220, 0.92);
+}
+
+.earthmap-legend__swatch--voice {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 10px rgba(74, 124, 155, 0.55);
+}
+
+.earthmap-legend__swatch--location {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 10px rgba(232, 93, 58, 0.55);
+}
+
+@media (max-width: 900px) {
+  .earthmap-legend {
+    display: none;
+  }
+}

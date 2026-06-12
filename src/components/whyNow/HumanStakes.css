@@ -1,0 +1,240 @@
+.human-stakes__title {
+  margin: 0 0 1.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.why-now__beats-row .human-stakes__title {
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  margin-bottom: 1.25rem;
+}
+
+.human-stakes--beats .human-stakes__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.why-now__beats-row .human-stakes__nutrition-block {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.85rem, 1.6vh, 1.15rem);
+}
+
+.why-now__beats-row .human-stakes__deficiency-list {
+  gap: clamp(0.85rem, 1.75vh, 1.4rem);
+}
+
+.why-now__beats-row .human-stakes__hero-value {
+  font-size: clamp(2.75rem, 9vw, 4.5rem);
+}
+
+.why-now__beats-row .human-stakes__statement {
+  max-width: none;
+}
+
+.human-stakes__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 2.5rem 3rem;
+  align-items: start;
+}
+
+.human-stakes__people-block,
+.human-stakes__nutrition-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.human-stakes__hero {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.human-stakes__hero-value {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 11vw, 6.5rem);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.human-stakes--animate .human-stakes__hero-value {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.8s var(--ease-dawn),
+    transform 0.8s var(--ease-dawn);
+}
+
+.human-stakes--beats .human-stakes__hero-value,
+.human-stakes--beats .human-stakes__deficiency {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.human-stakes--beats .human-stakes__deficiency-fill {
+  transform: scaleX(1);
+  transition: none;
+}
+
+.human-stakes__hero-unit {
+  color: var(--earth);
+  opacity: 0.85;
+  text-transform: lowercase;
+}
+
+.human-stakes__statement {
+  margin: 0;
+  max-width: 22rem;
+  font-size: clamp(1.05rem, 1.9vw, 1.15rem);
+  line-height: 1.7;
+  color: rgba(232, 228, 220, 0.82);
+}
+
+.human-stakes__nutrition-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.human-stakes__nutrition-note {
+  margin: 0 0 1rem;
+  max-width: 36rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: rgba(232, 228, 220, 0.9);
+}
+
+.why-now__beats-row .human-stakes__nutrition-note {
+  max-width: none;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+}
+
+.human-stakes__deficiency-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.human-stakes__deficiency {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.human-stakes--animate .human-stakes__deficiency {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.55s var(--ease-dawn) var(--indicator-delay, 0ms),
+    transform 0.55s var(--ease-dawn) var(--indicator-delay, 0ms);
+}
+
+.human-stakes__deficiency-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.human-stakes__deficiency-label {
+  font-size: 0.95rem;
+  color: rgba(232, 228, 220, 0.88);
+}
+
+.human-stakes__deficiency-value {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent);
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  min-width: 3.25rem;
+  text-align: right;
+}
+
+.human-stakes__deficiency-bar {
+  width: 100%;
+  height: 0.35rem;
+  background: rgba(90, 107, 82, 0.15);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.human-stakes__deficiency-fill {
+  width: var(--bar-width);
+  height: 100%;
+  background: linear-gradient(90deg, rgba(232, 93, 58, 0.55), var(--accent));
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.human-stakes--animate .human-stakes__deficiency-fill {
+  transform: scaleX(1);
+  transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1) var(--indicator-delay, 0ms);
+}
+
+.human-stakes__deficiency-pop {
+  opacity: 0.45;
+}
+
+.human-stakes__source {
+  margin: 0.25rem 0 0;
+  opacity: 0.5;
+}
+
+.human-stakes__source a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.human-stakes__source a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .human-stakes__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .human-stakes--beats .human-stakes__grid {
+    display: grid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .human-stakes__hero-value,
+  .human-stakes__deficiency {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .human-stakes__deficiency-fill {
+    transform: scaleX(1);
+    transition: none !important;
+  }
+}

@@ -1,0 +1,53 @@
+.map-card-anchor {
+  position: absolute;
+  pointer-events: none;
+}
+
+.map-card-anchor--hover {
+  z-index: var(--z-hover);
+}
+
+.map-card-anchor--panel {
+  z-index: calc(var(--z-panel) + 5);
+  pointer-events: auto;
+}
+
+.map-card-anchor--portal {
+  position: fixed;
+  z-index: calc(var(--z-map-panel) + 5);
+  pointer-events: auto;
+}
+
+.map-card-anchor--portal.map-card-anchor--hover {
+  z-index: var(--z-hover);
+  pointer-events: none;
+}
+
+.map-panel-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-map-panel);
+  border: none;
+  background: rgba(6, 8, 7, 0.35);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.map-section__overlays .map-card-anchor--portal {
+  position: absolute;
+  z-index: var(--z-map-panel-card);
+}
+
+.map-section__overlays .map-card-anchor--portal.map-card-anchor--hover {
+  z-index: var(--z-hover);
+}
+
+.map-section__overlays .map-card-anchor--panel.map-card-anchor--portal {
+  z-index: var(--z-map-panel-card);
+}
+
+.map-section__overlays .map-panel-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-map-panel);
+}

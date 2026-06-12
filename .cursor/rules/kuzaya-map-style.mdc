@@ -1,0 +1,48 @@
+---
+description: Locked-in KUZAYA map UI — theme, layers, markers (approved baseline)
+globs: src/components/GeoMap.tsx,src/components/GeoMarker.tsx,src/App.css,src/App.tsx,src/lib/googleMapBrandTheme.ts,src/lib/googleMapsConfig.ts,src/lib/mapProjection.ts,src/data/voiceMapPlaces.ts
+alwaysApply: false
+---
+
+# KUZAYA map style (baseline — do not drift without user request)
+
+## Google Map theme
+- Source: `src/lib/googleMapBrandTheme.ts` (Snazzy-style JSON palette)
+- **No `mapId` on `<Map>`** — Map ID disables client-side `styles`; keep JSON theme
+- `mapTypeId: 'roadmap'`, background `#212121`
+- Palette: land `#212121`, water `#2d4c4c`, highways `#e69138`, labels `#cccccc`
+- Show: country labels, arterial/highway roads, borders
+- Hide: local roads, POIs, locality/province/water labels, transit
+- Region: Kenya + Rwanda only (`strictBounds: true` in `googleMapsConfig.ts`)
+
+## Viewport & layering (z-index)
+Square edges — **no border-radius** on map viewport.
+```
+viewport (z1) → inner/map (z2) → atmosphere (z3) → viewport-gradient (z4) → markers (z5) → instruments (z100)
+```
+- Page-transition fade: `.map-section__viewport-gradient` in `App.css` (top/bottom + radial vignette)
+- Atmosphere veil/shade only when instrumented (`.map-section__atmosphere--active`)
+
+## Atmosphere (from KUZAYA-v2 / :5177)
+- `MapEarthmapTint` wired in `GeoMap.tsx` — radial vignette on map overlay layer
+- Instrumented: canvas `filter: brightness(0.68) saturate(0.82)` + stronger earthmap tint
+- Top shade: always `opacity: 0.55`, full `opacity: 1` when `.map-section__atmosphere--active`
+- Bottom fade: always visible (v2 gradient), no hide-when-idle
+
+## Markers (approved approach)
+- **External layer** `map-section__markers` via `GeoMarkersLayerContext` — pins **above** gradient
+- `GeoMarker.tsx`: portal to external layer + `projectLatLngToElement()` from `mapProjection.ts`
+- Update on: idle, zoom, bounds/center change, resize
+- **Do not** move pins back inside map-only OverlayView or stage-level experiments unless user asks
+- Production pins: orange `#e85d3a` from `locations.ts`
+- Voice pins: blue `#4a7c9b` from `voices.ts` / `voiceMapPlaces.ts`
+- Voice coords: hub cities in `MAP_PLACES`; tiny ring offset (`radius = ring * 0.0025`) for shared hubs only — never large linear spreads
+
+## Pin labels (production / instrumented mode)
+- Column layout: dot above label (`GeoMap.css`)
+- Instrumented labels visible on both `.geo-map--instrumented` and `.map-section__markers--instrumented`
+- Hover/active pins: z-index 800 via `:has(.geo-marker--hovered)`
+
+## Dev
+- Dev server: port **5173** (`strictPort: true`)
+- Do not add custom country label overlays — use Google's country labels

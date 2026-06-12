@@ -1,0 +1,63 @@
+.sheet__content section {
+  margin-top: 2.25rem;
+}
+
+.sheet__content h3 {
+  margin: 0 0 0.85rem;
+  color: var(--accent);
+  font-size: 0.78rem !important;
+}
+
+.sheet__content p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--ink-muted);
+}
+
+.sheet__tagline {
+  margin: 0.6rem 0 0;
+  font-size: 1rem;
+  color: var(--earth);
+}
+
+.sheet__meta {
+  margin: 0.85rem 0 0;
+  opacity: 0.5;
+}
+
+.sheet__question {
+  margin: 2.25rem 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--contour-faint);
+  border-bottom: 1px solid var(--contour-faint);
+}
+
+.sheet__question p {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.sheet__tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sheet__tags li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dotted var(--contour-faint);
+  font-size: 0.85rem !important;
+}
+
+.sheet__contributors dt {
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+
+.sheet__contributors dd {
+  margin: 0 0 1.25rem;
+  font-size: 1.05rem;
+  color: var(--ink-muted);
+}

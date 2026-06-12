@@ -1,0 +1,367 @@
+.film-section__partners {
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--contour-faint);
+}
+
+.film-section__partners-title {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 4vw, 2.65rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.film-section__partners-sub {
+  margin: 0 0 1.5rem;
+  opacity: 0.55;
+}
+
+.film-section__partners-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: clamp(1.25rem, 3vw, 2rem);
+  row-gap: 1.15rem;
+  width: 100%;
+}
+
+.film-section__partners-list > li {
+  position: relative;
+  overflow: visible;
+  flex: 0 0 auto;
+}
+
+.film-section__partners-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  opacity: 0.8;
+  transition: opacity 0.25s var(--ease-dawn);
+}
+
+.film-section__partners-link:hover,
+.film-section__partners-link:focus-visible {
+  opacity: 1;
+}
+
+.film-section__partners-tooltip {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 50%;
+  z-index: 2;
+  width: max-content;
+  max-width: min(11rem, 90vw);
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.2rem;
+  background: var(--surface-raised);
+  border: 1px solid var(--contour-faint);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  font-family: var(--font-ui);
+  font-size: var(--text-label);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  text-align: center;
+  color: var(--ink);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(0.2rem);
+  transition:
+    opacity 0.2s var(--ease-dawn),
+    visibility 0.2s var(--ease-dawn),
+    transform 0.2s var(--ease-dawn);
+}
+
+.film-section__partners-link:hover .film-section__partners-tooltip,
+.film-section__partners-link:focus-visible .film-section__partners-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.film-section__partners-logo {
+  display: block;
+  max-height: 2.5rem;
+  max-width: clamp(5.5rem, 14vw, 8.5rem);
+  width: auto;
+  object-fit: contain;
+}
+
+.film-section__partners-logo--biosorra {
+  max-height: 2.25rem;
+  max-width: clamp(6.5rem, 16vw, 9.5rem);
+}
+
+.film-section__partners-logo--icipe {
+  max-height: 2.35rem;
+}
+
+.film-section__partners-logo--uon {
+  max-height: 4rem;
+  max-width: clamp(8.25rem, 19.5vw, 11.5rem);
+}
+
+.film-section__partners-logo--solidafrica {
+  max-height: 4.5rem;
+  max-width: clamp(6.2rem, 15vw, 8rem);
+}
+
+.film-section__partners-logo--ofimak {
+  max-height: 2.75rem;
+  max-width: clamp(7rem, 18vw, 10.5rem);
+}
+
+.film-section__partners-link:has(.film-section__partners-logo--africa-farmers) {
+  min-height: 0;
+  padding: 0;
+}
+
+.film-section__partners-logo--africa-farmers {
+  width: clamp(11.2rem, 27vw, 12.4rem);
+  height: auto;
+  max-height: 6.75rem;
+  object-fit: contain;
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
+  filter: none;
+}
+
+.film-section__partners-link:has(.film-section__partners-logo--black-tulip-group) {
+  min-height: 0;
+  padding: 0;
+}
+
+.film-section__partners-logo--black-tulip-group {
+  width: clamp(6.25rem, 15vw, 7rem);
+  height: auto;
+  max-height: 6.5rem;
+  object-fit: contain;
+  box-shadow: none;
+  filter: none;
+}
+
+.film-section__partners-logo--cgiar {
+  max-height: 3.25rem;
+  max-width: clamp(10rem, 24vw, 14rem);
+}
+
+.film-section__partners-logo--cropnuts {
+  max-height: 2.35rem;
+  max-width: clamp(7.5rem, 18vw, 10.5rem);
+}
+
+.film-section__partners-logo--homa-bay-county {
+  max-height: 3rem;
+  max-width: clamp(3rem, 7.5vw, 3.75rem);
+}
+
+.film-section__partners-link:has(.film-section__partners-logo--holland-greentech) {
+  min-height: 0;
+  padding: 0;
+}
+
+.film-section__partners-logo--holland-greentech {
+  width: clamp(5rem, 12vw, 5.75rem);
+  height: auto;
+  max-height: 3.5rem;
+  object-fit: contain;
+  box-shadow: none;
+  filter: none;
+}
+
+.film-section__partners-link:has(.film-section__partners-logo--jagannath-growers) {
+  min-height: 0;
+  padding: 0;
+  background: none;
+}
+
+.film-section__partners-logo--jagannath-growers {
+  width: clamp(7.35rem, 16.8vw, 8.4rem);
+  height: auto;
+  max-height: 4.9rem;
+  object-fit: contain;
+  box-shadow: none;
+  filter: none;
+}
+
+.film-section__partners-logo--marula-proteen {
+  max-height: 2.35rem;
+  max-width: clamp(6rem, 15vw, 9rem);
+}
+
+.film-section__partners-logo--rockefeller-foundation {
+  max-height: 2.35rem;
+  max-width: clamp(7.5rem, 17vw, 10.5rem);
+}
+
+.film-section__partners-link:has(.film-section__partners-logo--talk-africa) {
+  min-height: 0;
+  padding: 0;
+}
+
+.film-section__partners-logo--talk-africa {
+  width: clamp(5rem, 11vw, 6rem);
+  height: auto;
+  max-height: 2.1rem;
+  object-fit: contain;
+  box-shadow: none;
+  filter: none;
+}
+
+.film-section__partners-link:has(.film-section__partners-logo--uasin-gishu-county) {
+  min-height: 0;
+  padding: 0;
+  background: none;
+}
+
+.film-section__partners-logo--uasin-gishu-county {
+  max-height: 2.25rem;
+  max-width: clamp(9rem, 22vw, 13rem);
+  object-fit: contain;
+  box-shadow: none;
+  filter: none;
+}
+
+.film-section__partners-link:has(.film-section__partners-logo--daily-nation) {
+  min-height: 0;
+  padding: 0;
+  background: none;
+}
+
+.film-section__partners-logo--daily-nation {
+  width: clamp(11rem, 26vw, 15rem);
+  height: auto;
+  max-height: 4.75rem;
+  object-fit: contain;
+  box-shadow: none;
+  filter: none;
+}
+
+@media (max-width: 1024px) {
+  .film-section__partners-logo--daily-nation {
+    width: clamp(8rem, 22vw, 12rem);
+    max-height: 3.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .film-section__partners-list {
+    column-gap: 0.85rem;
+    row-gap: 0.95rem;
+  }
+
+  .film-section__partners-link {
+    padding: 0.1rem;
+  }
+
+  .film-section__partners-logo {
+    max-height: 1.55rem;
+    max-width: 4.25rem;
+  }
+
+  .film-section__partners-logo--biosorra {
+    max-height: 1.4rem;
+    max-width: 4.5rem;
+  }
+
+  .film-section__partners-logo--icipe {
+    max-height: 1.45rem;
+  }
+
+  .film-section__partners-logo--uon {
+    max-height: 2.1rem;
+    max-width: 5.25rem;
+  }
+
+  .film-section__partners-logo--solidafrica {
+    max-height: 2.75rem;
+    max-width: 3.5rem;
+  }
+
+  .film-section__partners-logo--ofimak {
+    max-height: 1.65rem;
+    max-width: 5rem;
+  }
+
+  .film-section__partners-logo--africa-farmers {
+    width: auto;
+    max-height: 2.85rem;
+    max-width: 4.75rem;
+  }
+
+  .film-section__partners-logo--black-tulip-group {
+    width: auto;
+    max-height: 2.85rem;
+    max-width: 3.85rem;
+  }
+
+  .film-section__partners-logo--cgiar {
+    max-height: 1.85rem;
+    max-width: 5.5rem;
+  }
+
+  .film-section__partners-logo--cropnuts {
+    max-height: 1.45rem;
+    max-width: 4.75rem;
+  }
+
+  .film-section__partners-logo--homa-bay-county {
+    max-height: 1.75rem;
+    max-width: 2.25rem;
+  }
+
+  .film-section__partners-logo--holland-greentech {
+    width: auto;
+    max-height: 1.85rem;
+    max-width: 3rem;
+  }
+
+  .film-section__partners-logo--jagannath-growers {
+    width: auto;
+    max-height: 2.35rem;
+    max-width: 4.25rem;
+  }
+
+  .film-section__partners-logo--marula-proteen {
+    max-height: 1.45rem;
+    max-width: 4rem;
+  }
+
+  .film-section__partners-logo--rockefeller-foundation {
+    max-height: 1.45rem;
+    max-width: 4.75rem;
+  }
+
+  .film-section__partners-logo--talk-africa {
+    width: auto;
+    max-height: 1.3rem;
+    max-width: 3rem;
+  }
+
+  .film-section__partners-logo--uasin-gishu-county {
+    max-height: 1.4rem;
+    max-width: 5.5rem;
+  }
+
+  .film-section__partners-logo--daily-nation {
+    width: auto;
+    max-height: 2.1rem;
+    max-width: 5.5rem;
+  }
+
+  .film-section__partners-tooltip {
+    max-width: min(9rem, 80vw);
+    font-size: 0.65rem;
+  }
+}
+

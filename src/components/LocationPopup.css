@@ -1,0 +1,106 @@
+.location-popup {
+  position: relative;
+  z-index: 1;
+  width: min(320px, calc(100vw - 2rem));
+  max-height: min(70vh, 520px);
+  overflow-y: auto;
+  transform: translate(-50%, calc(-100% - 0.85rem));
+  background: rgba(14, 18, 16, 0.98);
+  border: 1px solid rgba(232, 93, 58, 0.4);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(12px);
+  padding: 1.25rem 1.25rem 1.5rem;
+  text-align: left;
+}
+
+.location-popup--flip-y {
+  transform: translate(-50%, 0.85rem);
+}
+
+.location-popup--flip-x:not(.location-popup--flip-y) {
+  transform: translate(calc(-50% - 0.75rem), calc(-100% - 0.85rem));
+}
+
+.location-popup--flip-x.location-popup--flip-y {
+  transform: translate(calc(-50% - 0.75rem), 0.85rem);
+}
+
+.location-popup__close {
+  display: block;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.55;
+  font-size: 0.72rem !important;
+}
+
+.location-popup__close:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.location-popup__header {
+  margin-bottom: 1rem;
+}
+
+.location-popup__title {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 700;
+  margin: 0.2rem 0 0;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.location-popup__story {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.location-popup__voices {
+  margin-top: 1.25rem;
+}
+
+.location-popup__voices-label {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.location-popup__voices-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.location-popup__voice-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+@media (max-width: 768px) {
+  .location-popup {
+    width: min(300px, calc(100vw - 1.5rem));
+    max-height: min(65vh, 480px);
+  }
+
+  .location-popup__title {
+    font-size: 1.45rem;
+  }
+}
