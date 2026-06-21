@@ -238,8 +238,8 @@
   }
 
   .film-hero__title {
-    font-size: clamp(2.2rem, 11.2vw, 2.85rem);
-    line-height: 0.94;
+    font-size: clamp(2.45rem, 12.5vw, 3.35rem);
+    line-height: 0.92;
     letter-spacing: -0.06em;
     width: 100%;
     max-width: 100%;
@@ -263,7 +263,7 @@
   }
 
   .film-hero__title {
-    font-size: clamp(2rem, 10.5vw, 2.55rem);
+    font-size: clamp(2.3rem, 12vw, 3.1rem);
     letter-spacing: -0.055em;
   }
 
@@ -275,6 +275,6 @@
 
 @media (max-width: 360px) {
   .film-hero__title {
-    font-size: clamp(1.85rem, 10vw, 2.25rem);
+    font-size: clamp(2.05rem, 11vw, 2.75rem);
   }
 }
