@@ -51,13 +51,31 @@
   z-index: 1 !important;
 }
 
-.map-section:fullscreen {
+.map-section:fullscreen.map-section--panel-open .map-section__overlays,
+.map-section--expanded.map-section--panel-open .map-section__overlays {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-map-overlays);
+}
+
+.map-section:fullscreen,
+.map-section--expanded {
   height: 100vh;
+  height: 100dvh;
   min-height: 100vh;
+  min-height: 100dvh;
   max-height: none;
 }
 
-.map-section:fullscreen .map-intro {
+.map-section--expanded {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  width: 100%;
+}
+
+.map-section:fullscreen .map-intro,
+.map-section--expanded .map-intro {
   display: none;
 }
 
@@ -234,7 +252,8 @@
   opacity: 1;
 }
 
-.map-section:fullscreen .map-section__shade-top {
+.map-section:fullscreen .map-section__shade-top,
+.map-section--expanded .map-section__shade-top {
   height: clamp(160px, 28%, 240px);
 }
 
@@ -254,7 +273,8 @@
   );
 }
 
-.map-section:fullscreen .map-section__fade {
+.map-section:fullscreen .map-section__fade,
+.map-section--expanded .map-section__fade {
   display: none;
 }
 

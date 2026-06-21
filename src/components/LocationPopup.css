@@ -1,15 +1,16 @@
 .location-popup {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
   width: min(320px, calc(100vw - 2rem));
   max-height: min(70vh, 520px);
-  overflow-y: auto;
+  overflow: hidden;
   transform: translate(-50%, calc(-100% - 0.85rem));
   background: rgba(14, 18, 16, 0.98);
   border: 1px solid rgba(232, 93, 58, 0.4);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(12px);
-  padding: 1.25rem 1.25rem 1.5rem;
   text-align: left;
 }
 
@@ -25,24 +26,64 @@
   transform: translate(calc(-50% - 0.75rem), 0.85rem);
 }
 
-.location-popup__close {
-  display: block;
-  margin: 0 0 0.75rem;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  opacity: 0.55;
-  font-size: 0.72rem !important;
+.location-popup__chrome {
+  flex-shrink: 0;
 }
 
-.location-popup__close:hover {
+.location-popup__handle {
+  display: none;
+}
+
+.location-popup__chrome-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem 0.85rem;
+}
+
+.location-popup__close {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0.35rem 0.55rem;
+  background: rgba(232, 228, 220, 0.06);
+  border: 1px solid rgba(232, 228, 220, 0.14);
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--ink);
+  transition:
+    opacity 0.25s var(--ease-dawn),
+    border-color 0.25s var(--ease-dawn),
+    color 0.25s var(--ease-dawn);
+}
+
+.location-popup__close:hover,
+.location-popup__close:focus-visible {
   opacity: 1;
+  border-color: rgba(232, 93, 58, 0.45);
   color: var(--accent);
 }
 
+.location-popup__close-icon {
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.location-popup__close-label {
+  font-size: 0.68rem !important;
+  letter-spacing: 0.12em;
+  opacity: 0.85;
+}
+
 .location-popup__header {
-  margin-bottom: 1rem;
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .location-popup__title {
@@ -54,6 +95,16 @@
   letter-spacing: -0.02em;
 }
 
+.location-popup__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  padding: 0 1.25rem 1.5rem;
+}
+
 .location-popup__story {
   margin: 0;
   font-size: 0.95rem;
@@ -63,6 +114,7 @@
 
 .location-popup__voices {
   margin-top: 1.25rem;
+  padding-bottom: 0.25rem;
 }
 
 .location-popup__voices-label {
@@ -94,13 +146,87 @@
   color: var(--ink);
 }
 
-@media (max-width: 768px) {
-  .location-popup {
-    width: min(300px, calc(100vw - 1.5rem));
-    max-height: min(65vh, 480px);
-  }
+/* Mobile bottom sheet — portaled to map overlays (works in fullscreen + expanded) */
+.location-popup-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 25000;
+  pointer-events: auto;
+}
 
-  .location-popup__title {
-    font-size: 1.45rem;
-  }
+.map-section__overlays .location-popup-sheet {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.location-popup-sheet__scrim {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: rgba(6, 8, 7, 0.35);
+  cursor: pointer;
+}
+
+.location-popup-sheet__panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  height: min(85dvh, 640px);
+  max-height: min(85dvh, 640px);
+  background: rgba(14, 18, 16, 0.98);
+  border: 1px solid rgba(232, 93, 58, 0.4);
+  border-bottom: none;
+  border-radius: 0.85rem 0.85rem 0 0;
+  box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+
+.location-popup-sheet__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+.location-popup-sheet .location-popup__chrome {
+  flex-shrink: 0;
+  background: rgba(14, 18, 16, 0.98);
+  border-bottom: 1px solid rgba(232, 228, 220, 0.08);
+}
+
+.location-popup-sheet .location-popup__handle {
+  display: block;
+  width: 2.75rem;
+  height: 3px;
+  margin: 0.45rem auto 0.15rem;
+  border-radius: 999px;
+  background: rgba(232, 228, 220, 0.22);
+}
+
+.location-popup-sheet .location-popup__chrome-row {
+  padding: 0.55rem 1rem 0.75rem;
+}
+
+.location-popup-sheet .location-popup__title {
+  font-size: 1.35rem;
+}
+
+.location-popup-sheet .location-popup__body {
+  flex: none;
+  min-height: auto;
+  overflow: visible;
+  padding: 0.85rem 1.15rem calc(2rem + env(safe-area-inset-bottom, 0px));
+}
+
+.location-popup-sheet .location-popup__voices {
+  padding-bottom: 0.5rem;
 }

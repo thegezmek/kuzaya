@@ -55,72 +55,82 @@ export function VoicePopup({ voice, map, onClose }: VoicePopupProps) {
     cardH: CARD_H,
   });
 
-  if (!pos) return null;
-
   return createPortal(
     <AnimatePresence>
-      <motion.button
-        key="scrim"
-        type="button"
-        className="map-panel-scrim"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        aria-label="Close voice"
-        onClick={onClose}
-      />
-      <motion.div
-        key={voice.id}
-        className="map-card-anchor map-card-anchor--panel map-card-anchor--portal"
-        style={{ left: pos.x, top: pos.y }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.2 }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <motion.article
-          className={`voice-popup ${pos.flipX ? 'voice-popup--flip-x' : ''} ${pos.flipY ? 'voice-popup--flip-y' : ''}`}
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.96 }}
-          transition={{ duration: 0.3, ease: [0.33, 0, 0.2, 1] }}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="voice-popup-title"
-        >
-          <button type="button" className="voice-popup__close field-label" onClick={onClose}>
-            Close
-          </button>
-
-          <header className="voice-popup__header">
-            <div className="voice-popup__intro">
-              <VoicePopupPortrait voice={voice} />
-              <div className="voice-popup__identity">
-                <span className="field-label">Voice in the film</span>
-                <h2 id="voice-popup-title" className="voice-popup__title">
-                  {voice.name}
-                </h2>
-                <VoiceRoleLines role={voice.role} className="voice-role-lines--popup" />
+      {pos && (
+        <>
+          <motion.button
+            key="voice-scrim"
+            type="button"
+            className="map-panel-scrim"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            aria-label="Close voice"
+            onClick={onClose}
+          />
+          <motion.div
+            key={voice.id}
+            className="map-card-anchor map-card-anchor--panel map-card-anchor--portal"
+            style={{ left: pos.x, top: pos.y }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.22, ease: [0.33, 0, 0.2, 1] }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <article
+              className={`voice-popup ${pos.flipX ? 'voice-popup--flip-x' : ''} ${pos.flipY ? 'voice-popup--flip-y' : ''}`}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="voice-popup-title"
+            >
+              <div className="voice-popup__chrome">
+                <span className="voice-popup__handle" aria-hidden="true" />
+                <div className="voice-popup__chrome-row">
+                  <header className="voice-popup__header">
+                    <div className="voice-popup__intro">
+                      <VoicePopupPortrait voice={voice} />
+                      <div className="voice-popup__identity">
+                        <span className="field-label">Voice in the film</span>
+                        <h2 id="voice-popup-title" className="voice-popup__title">
+                          {voice.name}
+                        </h2>
+                        <VoiceRoleLines role={voice.role} className="voice-role-lines--popup" />
+                      </div>
+                    </div>
+                  </header>
+                  <button
+                    type="button"
+                    className="voice-popup__close"
+                    onClick={onClose}
+                    aria-label="Close voice"
+                  >
+                    <span className="voice-popup__close-icon" aria-hidden="true">
+                      ×
+                    </span>
+                    <span className="voice-popup__close-label field-label">Close</span>
+                  </button>
+                </div>
               </div>
-            </div>
-          </header>
 
-          <div className="voice-popup__body">
-            <p className="voice-popup__bio">{voice.bio}</p>
-            {voice.linkedin && (
-              <a
-                href={voice.linkedin}
-                className="voice-popup__link field-label"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
-            )}
-          </div>
-        </motion.article>
-      </motion.div>
+              <div className="voice-popup__body">
+                <p className="voice-popup__bio">{voice.bio}</p>
+                {voice.linkedin && (
+                  <a
+                    href={voice.linkedin}
+                    className="voice-popup__link field-label"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    LinkedIn
+                  </a>
+                )}
+              </div>
+            </article>
+          </motion.div>
+        </>
+      )}
     </AnimatePresence>,
     portalTarget,
   );

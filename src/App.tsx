@@ -1,6 +1,5 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import type { GoogleMap } from './types/map';
-import { AnimatePresence } from 'framer-motion';
 import { locations } from './data/locations';
 import { GeoMap } from './components/GeoMap';
 import { MapChrome } from './components/MapChrome';
@@ -57,6 +56,7 @@ function App() {
   const [corridorDragging, setCorridorDragging] = useState(false);
   const [navVariant, setNavVariant] = useState<'hero' | 'map' | 'content'>('hero');
   const [mapFullscreen, setMapFullscreen] = useState(false);
+  const [mapExpandedCss, setMapExpandedCss] = useState(false);
   const [mapStageHovered, setMapStageHovered] = useState(false);
   const [geoMarkersLayer, setGeoMarkersLayer] = useState<HTMLDivElement | null>(null);
   const [mapOverlaysEl, setMapOverlaysEl] = useState<HTMLDivElement | null>(null);
@@ -111,13 +111,27 @@ function App() {
     const section = mapSectionRef.current;
     if (!section) return;
 
-    if (document.fullscreenElement) {
-      await document.exitFullscreen();
+    const nativeActive = document.fullscreenElement === section;
+
+    if (nativeActive || mapExpandedCss) {
+      if (nativeActive) {
+        await document.exitFullscreen();
+      }
+      setMapExpandedCss(false);
       return;
     }
 
-    await section.requestFullscreen();
-  }, []);
+    try {
+      if (section.requestFullscreen) {
+        await section.requestFullscreen();
+        return;
+      }
+    } catch {
+      // iOS Safari often rejects element fullscreen — fall back below.
+    }
+
+    setMapExpandedCss(true);
+  }, [mapExpandedCss]);
 
   const handleProgressChange = useCallback((progress: number) => {
     setScrollProgress(progress);
@@ -188,8 +202,11 @@ function App() {
 
   useEffect(() => {
     const onFullscreenChange = () => {
-      const active = document.fullscreenElement === mapSectionRef.current;
-      setMapFullscreen(active);
+      const nativeActive = document.fullscreenElement === mapSectionRef.current;
+      setMapFullscreen(nativeActive || mapExpandedCss);
+      if (!nativeActive && !mapExpandedCss) {
+        setMapExpandedCss(false);
+      }
       const resizeMap = () => {
         const map = mapRef.current?.getMap();
         if (map) triggerMapResize(map);
@@ -200,7 +217,11 @@ function App() {
 
     document.addEventListener('fullscreenchange', onFullscreenChange);
     return () => document.removeEventListener('fullscreenchange', onFullscreenChange);
-  }, []);
+  }, [mapExpandedCss]);
+
+  useEffect(() => {
+    setMapFullscreen(mapExpandedCss || document.fullscreenElement === mapSectionRef.current);
+  }, [mapExpandedCss]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -214,11 +235,15 @@ function App() {
         void document.exitFullscreen();
         return;
       }
+      if (mapExpandedCss) {
+        setMapExpandedCss(false);
+        return;
+      }
       setHoveredId(null);
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [activeId]);
+  }, [activeId, mapExpandedCss]);
 
   useEffect(() => {
     const stage = mapSectionRef.current?.querySelector<HTMLElement>('.map-section__stage');
@@ -289,12 +314,21 @@ function App() {
   }, [instrumentsVisible]);
 
   useEffect(() => {
-    if (!mapFullscreen) return;
+    if (!mapFullscreen && !mapExpandedCss) return;
     const map = mapRef.current?.getMap();
     if (!map) return;
     const timer = window.setTimeout(() => triggerMapResize(map), 200);
     return () => window.clearTimeout(timer);
-  }, [mapFullscreen]);
+  }, [mapFullscreen, mapExpandedCss]);
+
+  useEffect(() => {
+    if (!mapExpandedCss && !activeId) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mapExpandedCss, activeId]);
 
   return (
     <div className="app">
@@ -309,7 +343,7 @@ function App() {
 
       <section
         ref={mapSectionRef}
-        className={`map-section${activeId ? ' map-section--panel-open' : ''}`}
+        className={`map-section${activeId ? ' map-section--panel-open' : ''}${mapExpandedCss ? ' map-section--expanded' : ''}`}
         id="map"
       >
         <MapIntro />
@@ -412,16 +446,14 @@ function App() {
               <LocationHoverCard location={hoverCardLocation} map={mapInstance} />
             )}
 
-            <AnimatePresence>
-              {activeLocation && mapInstance && (
-                <LocationPopup
-                  key={activeLocation.id}
-                  location={activeLocation}
-                  map={mapInstance}
-                  onClose={handleClosePopup}
-                />
-              )}
-            </AnimatePresence>
+            {activeLocation && mapInstance && (
+              <LocationPopup
+                key={activeLocation.id}
+                location={activeLocation}
+                map={mapInstance}
+                onClose={handleClosePopup}
+              />
+            )}
 
             </div>
 
